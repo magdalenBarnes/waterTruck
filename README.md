@@ -8,6 +8,7 @@ Three premade libraries were included in the code. The libraries contained funct
 #include "I2CScanner.h"
 #include <NMEAGPS.h>
 ```c
+
 The Arduino Mega contains several serial ports. The serial port designated to the GPS was renamed "gpsPort".
 ```c
 #define gpsPort Serial1
