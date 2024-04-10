@@ -18,7 +18,7 @@ I2CScanner scanner;
 NMEAGPS gps;
 gps_fix fix; 
 ```
-Instances were made of the three I2C DACs to later call on.
+Instances of three I2C DACs were made to call later on.
 ```c
 DFRobot_GP8403 dac(&Wire,0x58);
 DFRobot_GP8403 dac1(&Wire,0x59);
