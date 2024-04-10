@@ -98,31 +98,29 @@ float CurrentLong;
 
 Next, if the GPS was able to communicate with the Arduino, the latitude and longitude were printed on the serial monitor similar to the demonstration code. The values for latitude and longitude were stored in variable to use later.
 ```c
-  if (gps.available( gpsPort )) { //if GPS can communicate read GPS coordinates
+  if (gps.available( gpsPort )) { 
     fix = gps.read();
 
-    Serial.println( fix.latitude(), 6 ); // positive for N, negative for S
-    Serial.println( fix.longitude(), 6 ); // positive for E, negative for W
-
-     CurrentLat = fix.latitude(); //define current latitude as latitude read by GPS
-     CurrentLong = fix.longitude(); //define current longitude as longitude read by GPS
+    Serial.println( fix.latitude(), 6 ); 
+    Serial.println( fix.longitude(), 6 ); 
+     CurrentLat = fix.latitude(); 
+     CurrentLong = fix.longitude(); 
 ```
 
 A series of if, else if, and else statements were used to determine where the truck was on the track. If the coordiantes were in box A or box B, a message would display to indicate the truck was rounding a curve. In addition, the voltages to the valves were changed to varying voltages using the same commands as in the demonstration code. If the truck was not in either box, a message displayed that the truck was going around a straight away. In the case of a straightaway, all voltages were set to 3000 (3V).
 ```c
-  if (CurrentLong >= ALeftBound & CurrentLong <= ARightBound & CurrentLat >= ALowerBound & CurrentLat <= AUpperBound) {
-    Serial.print("Going around curve A \n"); //print message indicating voltage change to range of 1.3-1.7V
+if (CurrentLong >= ALeftBound & CurrentLong <= ARightBound & CurrentLat >= ALowerBound & CurrentLat <= AUpperBound) {
+    Serial.print("Going around curve A \n"); 
 
-     else if (CurrentLong >= BLeftBound & CurrentLong <= BRightBound & CurrentLat >= BLowerBound & CurrentLat <= BUpperBound) {
-    Serial.print("Going around curve B \n"); //print message indicating voltage change to range of 1.3-1.7V
+else if (CurrentLong >= BLeftBound & CurrentLong <= BRightBound & CurrentLat >= BLowerBound & CurrentLat <=     BUpperBound) {
+    Serial.print("Going around curve B \n"); /
 
-      else
-
-    Serial.print("Going on straightaway \n");//print message indicating straightaway, voltage change to 3V
+else
+    Serial.print("Going on straightaway \n");
 ```
 At the end of each if, else if, and else statement the current latitude and longitude were reread and saved into variable. The rereading of coordinates ensured the system would keep repeating itself and adjusting for changes in location.
 ```c
-           fix = gps.read();
-            CurrentLat = fix.latitude(); //define current latitude as latitude read by GPS
-            CurrentLong = fix.longitude(); //define current longitude as longitude read by GPS
-    ```
+ fix = gps.read();
+ CurrentLat = fix.latitude(); S
+ CurrentLong = fix.longitude(); 
+```
