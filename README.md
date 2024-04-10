@@ -58,21 +58,20 @@ Because the demonstration took place inside, the GPS could only read (0,0). To i
 ```c
  if (fix.longitude() == 0) {
 ```
-If the condition was met, the Arduino would communicate to the I2C DACs to change voltage and display a message on the serial monitor.
+If the condition was met, the Arduino would communicate to the I2C DACs to change voltage and display a message on the serial monitor. First, the serial monitor displayed "break" to indicate the valves were closed. The voltage to the valves was set to zero using the "dac.setDACOutVoltage(<#>,<#>) command, where the first number input was the voltage level between 0 - 10000 (0 is 0 V, and 10000 is 10 V), and the second number was the channel of the DAC. A delay was set to hold the voltage at zero.
 ```c
-Serial.print("break \n"); //print message indicating break in valve operation, voltage change to 0V
-dac.setDACOutVoltage(0,0);//Set the voltage of dac channel 0 (valve 1) to 0 V
-delay(30000); //wait 30 seconds
+Serial.print("break \n"); 
+dac.setDACOutVoltage(0,0);
+delay(30000); 
 
-Serial.print("Going on straightaway \n"); //print message indicating straightaway, voltage change to 3V
-dac.setDACOutVoltage(3000,0);//Set the voltage of dac channel 0 (valve 1) to 3 V
-delay(30000); //wait 30 seconds
+Serial.print("Going on straightaway \n");
+dac.setDACOutVoltage(3000,0);
+delay(30000); 
 
-Serial.print("Going around corner \n"); //print message indicating voltage change to range of 1.3-1.7V
-dac.setDACOutVoltage(1300,0);//Set the voltage of dac channel 0 (valve 1) to 1.3 V
+Serial.print("Going around corner \n");
+dac.setDACOutVoltage(1300,0);
 delay(20000);//wait 20 seconds
 
-
-Serial.print("break \n"); //print message indicating break in valve operation, voltage change to 0V
-dac.setDACOutVoltage(0,0);//Set the voltage of dac channel 0 (valve 1) to 0 V
+Serial.print("break \n"); 
+dac.setDACOutVoltage(0,0);
 ```
