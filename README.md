@@ -39,7 +39,7 @@ while(dac.begin()!=0){
    }
 Serial.println("DAC init succeed");
 ```
-To choose the voltage range of the I2C DAC to be 0 - 10 V, the command "dac.setDACOutRange" was used. The "dac" at the beginning of the "dac.begin" was adjusted to "dac1" and "dac2" to refernce the other two I2C DACs. The initalization was completed for each I2C DAC, example code for one is shown below.
+To choose the voltage range of the I2C DAC to be 0 - 10 V, the command "dac.setDACOutRange" was used. The "dac" at the beginning of the "dac.begin" was adjusted to "dac1" and "dac2" to refernce the other two I2C DACs. The setting out output range was completed for each I2C DAC, example code for one is shown below.
 ```c
  dac.setDACOutRange(dac.eOutputRange10V);//Set the output range as 0-10V for dac
 ```
@@ -58,7 +58,8 @@ Because the demonstration took place inside, the GPS could only read (0,0). To i
 ```c
  if (fix.longitude() == 0) {
 ```
-If the condition was met, the Arduino would communicate to the I2C DACs to change voltage and display a message on the serial monitor. First, the serial monitor displayed "break" to indicate the valves were closed. The voltage to the valves was set to zero using the "dac.setDACOutVoltage(<#>,<#>) command, where the first number input was the voltage level between 0 - 10000 (0 is 0 V, and 10000 is 10 V), and the second number was the channel of the DAC. A delay was set to hold the voltage at zero.
+If the condition was met, the Arduino would communicate to the I2C DACs to change voltage and display a message on the serial monitor. First, the serial monitor displayed "break" to indicate the valves were closed. The voltage to all valves was set to zero using the "dac.setDACOutVoltage(<#>,<#>) command, where the first number input was the voltage level between 0 - 10000 (0 is 0 V, and 10000 is 10 V), and the second number was the channel of the DAC. A delay was set to hold the voltage at zero. Next, the a message was displayed to indicate the truck was traveling straight. The voltages were all set to 3000 (3V). Another delay followed. The valves were all set to zero again. Finally, all valves were set to a value between 1300 and 1700 (1.3 V - 1.7 V). The changes in voltages were completed for each I2C DAC, example code for one is shown below.
+
 ```c
 Serial.print("break \n"); 
 dac.setDACOutVoltage(0,0);
@@ -75,3 +76,4 @@ delay(20000);//wait 20 seconds
 Serial.print("break \n"); 
 dac.setDACOutVoltage(0,0);
 ```
+ 
