@@ -14,9 +14,9 @@ The Arduino Mega contains several serial ports. The serial port designated to th
 ```
 Three variables and their classes were defined based on the premade libraries.
 ```c
-I2CScanner scanner; //create variable of scanner, class I2C scanner
-NMEAGPS gps; // create variable gps, class NMEA gps
-gps_fix fix; // create variable fix, class gps_fix
+I2CScanner scanner; 
+NMEAGPS gps;
+gps_fix fix; 
 ```
 Instances were made of the three I2C DACs to later call on.
 ```c
