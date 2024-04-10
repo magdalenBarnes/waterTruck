@@ -18,16 +18,16 @@ DFRobot_GP8403 dac2(&Wire,0x5A); //Create instance of dac 2 at address 0x5A clos
 //Create variables to hold coordinate values to create box A
 
 //Define coordinate values to create box A
-int ALowerBound = 38.0433178;
-int AUpperBound = 38.0451909;
-int ALeftBound = -84.6083267;
-int ARightBound = -84.6054986;
+float ALowerBound = 38.0433178;
+float AUpperBound = 38.0451909;
+float ALeftBound = -84.6083267;
+float ARightBound = -84.6054986;
 
 //Define coordinate values to create box B
-int BLowerBound = 38.0473288;
-int BUpperBound = 38.0492728;
-int BLeftBound = -84.6114853;
-int BRightBound = -84.6091066;
+float BLowerBound = 38.0473288;
+float BUpperBound = 38.0492728;
+float BLeftBound = -84.6114853;
+float BRightBound = -84.6091066;
 
 //define variables to hold coordinates
 float CurrentLat;
