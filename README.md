@@ -31,7 +31,7 @@ void setup() {
   Serial.begin(9600);
   gpsPort.begin(9600);
 ```
-To initalize the I2C DACs, a begin function was called from the DAC library which outputs an error code if initialization fails. If the error code was not zero, an error message displays. If the code returned was zero, a message was displayed indicating successful initialization. The initalization was completed for each I2C DAC, example code for one is shown below.
+To initalize the I2C DACs, a begin function was called from the DAC library which outputs an error code if initialization fails. If the error code was not zero, an error message displays. If the code returned was zero, a message was displayed indicating successful initialization. The "dac" at the beginning of the "dac.begin" was adjusted to "dac1" and "dac2" to refernce the other two I2C DACs. The initalization was completed for each I2C DAC, example code for one is shown below.
 ```c
 while(dac.begin()!=0){ 
     Serial.println("DAC0 init error"); 
@@ -39,6 +39,22 @@ while(dac.begin()!=0){
    }
 Serial.println("DAC init succeed");
 ```
-To choose the voltage range of the I2C DAC to be 0 - 10 V, the command "dac.setDACOutRange" was used.
-
+To choose the voltage range of the I2C DAC to be 0 - 10 V, the command "dac.setDACOutRange" was used. The "dac" at the beginning of the "dac.begin" was adjusted to "dac1" and "dac2" to refernce the other two I2C DACs. The initalization was completed for each I2C DAC, example code for one is shown below.
+```c
  dac.setDACOutRange(dac.eOutputRange10V);//Set the output range as 0-10V for dac
+```
+The main body loop starts by reading the gps and printing the latitude and longitude measured. First, the GPS was read using the "gps.read()" command and set equal to the variable "fix". The variable was then printed in the serial monitor using the "Serial.print()" command.
+```c
+void loop(){
+
+  fix = gps.read();
+
+  Serial.print("latitude:"); 
+  Serial.println( fix.latitude(), 6 );
+  Serial.print("longitude:");
+  Serial.println( fix.longitude(), 6 ); 
+```
+Because the demonstration took place inside, the GPS could only read (0,0). To incorporate this into the system an if statement comparing the longitude to zero was created to act as a barrier into the valve operation code.
+```c
+ if (fix.longitude() == 0) {
+```
