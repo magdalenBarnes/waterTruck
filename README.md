@@ -20,22 +20,25 @@ gps_fix fix; // create variable fix, class gps_fix
 ```
 Instances were made of the three I2C DACs to later call on.
 ```c
-DFRobot_GP8403 dac(&Wire,0x58); //Create instance of dac at address 0x58 on outside
-DFRobot_GP8403 dac1(&Wire,0x59); //Create instance of dac 1 at address 0x59
-DFRobot_GP8403 dac2(&Wire,0x5A); //Create instance of dac 2 at address 0x5A closest to center
+DFRobot_GP8403 dac(&Wire,0x58);
+DFRobot_GP8403 dac1(&Wire,0x59);
+DFRobot_GP8403 dac2(&Wire,0x5A);
 ```
 In the setup loop serial communication was initiated with the computer serial port and the gps port
 ```c
 void setup() {
 
-  Serial.begin(9600); //Begin serial communication with computer at baud rate of 9600
-  gpsPort.begin(9600); // Begin serial communication with GPS at baud rate of 9600
+  Serial.begin(9600);
+  gpsPort.begin(9600);
 ```
-To initalize the I2C DACs, a begin function was called from the DAC library which outputs an error code if initialization fails. If the error code was not zero, an error message displays. If the code returned was zero, a message was displayed indicating successful initialization. The initalization was completed for each I2C DAC.
+To initalize the I2C DACs, a begin function was called from the DAC library which outputs an error code if initialization fails. If the error code was not zero, an error message displays. If the code returned was zero, a message was displayed indicating successful initialization. The initalization was completed for each I2C DAC, example code for one is shown below.
 ```c
-while(dac.begin()!=0){  //while 0 is not returned
-    Serial.println("DAC0 init error"); //print error message
-    delay(1000); //wait one second then repeat 
+while(dac.begin()!=0){ 
+    Serial.println("DAC0 init error"); 
+    delay(1000); 
    }
 Serial.println("DAC init succeed");
 ```
+To choose the voltage range of the I2C DAC to be 0 - 10 V, the command "dac.setDACOutRange" was used.
+
+ dac.setDACOutRange(dac.eOutputRange10V);//Set the output range as 0-10V for dac
