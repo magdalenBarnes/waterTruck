@@ -41,7 +41,7 @@ Serial.println("DAC init succeed");
 ```
 To choose the voltage range of the I2C DAC to be 0 - 10 V, the command "dac.setDACOutRange" was used. The "dac" at the beginning of the "dac.DACOutRange" was adjusted to "dac1" and "dac2" to refernce the other two I2C DACs. The output range selection was completed for each I2C DAC, example code for one is shown below.
 ```c
- dac.setDACOutRange(dac.eOutputRange10V);//Set the output range as 0-10V for dac
+ dac.setDACOutRange(dac.eOutputRange10V);
 ```
 The main body loop starts by reading the gps and printing the latitude and longitude measured. First, the GPS was read using the "gps.read()" command and set equal to the variable "fix". The variable was then printed in the serial monitor using the "Serial.print()" command.
 ```c
